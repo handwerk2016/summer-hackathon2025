@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBLift - My Projects & AI Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    .gradient-bg {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    .chat-message-user {
+        background-color: #e0e7ff; /* Light primary color */
+        align-self: flex-end;
+    }
+    .chat-message-ai {
+        background-color: #f0f4f8; /* Light gray */
+        align-self: flex-start;
+    }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-brain text-2xl"></i>
+                <span class="text-xl font-bold">PBLift</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-gray-200">Home</a>
+                <a href="#" class="hover:text-gray-200">Features</a>
+                <a href="#" class="hover:text-gray-200">My Projects</a>
+                <a href="#" class="hover:text-gray-200">Community</a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex flex-1">
+        <aside class="w-64 bg-white p-6 shadow-md flex flex-col justify-between">
+            <div>
+                <h3 class="text-lg font-bold mb-4 text-dark">My Projects</h3>
+                <div class="relative mb-4">
+                    <select class="block w-full bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-primary" onchange="window.location.href=this.value;">
+                        <option value="#" selected disabled>No Projects Yet</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-gray-600">
+                    <li>
+                        <a href="#" class="flex items-center bg-primary text-white rounded-lg px-3 py-2 hover:bg-secondary transition">
+                            <i class="fas fa-folder mr-2"></i> Current Project
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center bg-primary text-white rounded-lg px-3 py-2 hover:bg-secondary transition">
+                            <i class="fas fa-plus-circle mr-2"></i> Start New Project
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center bg-primary text-white rounded-lg px-3 py-2 hover:bg-secondary transition">
+                            <i class="fas fa-list-check mr-2"></i> All Projects
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <button class="w-full text-left py-2 px-3 rounded-lg bg-primary text-white hover:bg-secondary flex items-center">
+                    <i class="fas fa-cog mr-2"></i> Settings
+                </button>
+                <button class="w-full text-left py-2 px-3 rounded-lg bg-primary text-white hover:bg-secondary flex items-center">
+                    <i class="fas fa-user-circle mr-2"></i> Account
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-6 flex flex-col bg-gray-100">
+            <h2 class="text-2xl font-bold mb-6 text-dark">AI Mentor Chat</h2>
+
+            <div class="flex-1 bg-white p-4 rounded-lg shadow-inner overflow-y-auto mb-4 flex flex-col space-y-4">
+                <div class="flex items-start">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-sm mr-3">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bg-gray-200 p-3 rounded-xl max-w-lg chat-message-ai">
+                        <p>Hello! How can I help you today? What project are you thinking about, or what would you like to learn?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <input type="text" placeholder="Type your message to the AI mentor..." class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary mr-3">
+                <button class="gradient-bg text-white px-6 py-3 rounded-lg hover:opacity-90 transition duration-300">
+                    Send
+                </button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
