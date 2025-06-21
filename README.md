@@ -6,13 +6,7 @@ The theme is: **Lack of Practical Project-Based Learning**
 
 # Tech Stack:
 
-Backend: Python 3.10, FastAPI, torch, transformers (for LLM)
-
-
-Database: MySQL
-
-
-Frontend: <to be filled>
+Backend: Python 3.10, FastAPI, torch, transformers (for LLM)<br>Database: MySQL<br>Frontend: to be filled<br>LLM: [gemma-3-4b-it](https://huggingface.co/google/gemma-3-4b-it)
 
 
 
