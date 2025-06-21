@@ -1,17 +1,18 @@
-from datetime import timedelta
-from typing import Annotated
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
-from jose import JWTError, jwt
+from datetime import timedelta  # Time calculations
+from typing import Annotated  # Type hints for dependencies
+from fastapi import APIRouter, Depends, HTTPException, status  # FastAPI components
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm  # OAuth2 utilities
+from sqlalchemy.orm import Session  # Database session
+from jose import JWTError, jwt  # JWT handling
 
-from app.core.config import settings
-from app.core.security import verify_password, create_access_token
-from app.db.session import get_db
-from app.models.user import User
-from app.schemas.token import Token, TokenData
+from app.core.config import settings  # App settings
+from app.core.security import verify_password, create_access_token  # Security utils
+from app.db.session import get_db  # Database session dependency
+from app.models.user import User  # User model
+from app.schemas.token import Token, TokenData  # Token schemas
 
 router = APIRouter()
+# OAuth2 scheme for token extraction from requests
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.API_V1_STR}/auth/token")
 
 async def get_current_user(
@@ -27,7 +28,7 @@ async def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        # Decode JWT token
+        # Decode and validate JWT token
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
@@ -48,9 +49,9 @@ async def login_for_access_token(
     db: Session = Depends(get_db)
 ):
     """
-    OAuth2 compatible token login, get an access token for future requests
+    OAuth2 compatible token login endpoint
     """
-    # Authenticate user
+    # Verify username and password
     user = db.query(User).filter(User.username == form_data.username).first()
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(
@@ -59,7 +60,7 @@ async def login_for_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    # Create access token
+    # Generate JWT token
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
