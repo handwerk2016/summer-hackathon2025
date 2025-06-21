@@ -229,12 +229,12 @@ To be continued!
 
 # Our team:
 
-| Photo                                                                                                                                             | Name      | Role                                                                    | Github                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------- | ------------------------------------------------ |
-| <img title="" src="https://avatars.githubusercontent.com/u/197951069" alt="" width="91">                                                          | Anastasia | Team Lead<br/>Frontend Developer                                        | [Click](https://github.com/Anastasia11111111114) |
-| <img src="https://i.imgur.com/nm2Gugw.png" title="" alt="ds" width="91">                                                                          | Alex      | Backend Developer<br/><br/>(Technically Full-Stack but prefers backend) | [Click](https://github.com/handwerk2016)         |
-| <img src="https://avatars.githubusercontent.com/u/52779739?v=4" title="" alt="https://avatars.githubusercontent.com/u/52779739?v=4" width="98">   | Ilya      | Frontend Developer                                                      | [Click](https://github.com/STIDchannel)          |
-| <img src="https://avatars.githubusercontent.com/u/209294428?v=4" title="" alt="https://avatars.githubusercontent.com/u/209294428?v=4" width="95"> | Andrei    | Web Designer                                                            | [Click](https://github.com/ProstoAndriuha)       |
+| Photo                                                                                                                                             | Name      | Role                                                                             | Github                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------------- | ------------------------------------------------ |
+| <img title="" src="https://avatars.githubusercontent.com/u/197951069" alt="" width="91">                                                          | Anastasia | Team Lead<br/>Frontend Developer                                                 | [Click](https://github.com/Anastasia11111111114) |
+| <img src="https://i.imgur.com/nm2Gugw.png" title="" alt="ds" width="91">                                                                          | Alex      | Backend Developer<br/>Tech Lead<br/>(Technically Full-Stack but prefers backend) | [Click](https://github.com/handwerk2016)         |
+| <img src="https://avatars.githubusercontent.com/u/52779739?v=4" title="" alt="https://avatars.githubusercontent.com/u/52779739?v=4" width="98">   | Ilya      | Frontend Developer                                                               | [Click](https://github.com/STIDchannel)          |
+| <img src="https://avatars.githubusercontent.com/u/209294428?v=4" title="" alt="https://avatars.githubusercontent.com/u/209294428?v=4" width="95"> | Andrei    | Web Designer                                                                     | [Click](https://github.com/ProstoAndriuha)       |
 
 
 
