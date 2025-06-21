@@ -1,0 +1,14 @@
+// Top secret files
+backend/.env
+backend/venv
+
+// No cache (junk) in our repository!!
+backend/app/api/v1/__pycache__
+backend/app/api/__pycache__
+backend/app/core/__pycache__
+backend/app/schemas/__pycache__
+backend/app/db/__pycache__
+backend/app/models/__pycache__
+backend/app/__pycache__
+backend/__pycache__
+
