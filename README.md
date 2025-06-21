@@ -5,7 +5,11 @@ Hello world! There's our small project that's being developed during FAF & Sigmo
 # Tech Stack:
 
 Backend: Python 3.10, FastAPI, torch, transformers (for llm)
+
+
 Database: MySQL
+
+
 Frontend: <to be filled>
 
 
