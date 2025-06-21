@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBLift - AI Mentor for Project-Based Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        .project-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .task-item {
+            border-left: 3px solid #9e63f1;
+        }
+        .debugger-box {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #9e63f1;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation:
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from {
+                width: 0
+            }
+            to {
+                width: 100%
+            }
+        }
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent
+            }
+            50% {
+                border-color: #9e63f1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-brain text-2xl"></i>
+                <span class="text-xl font-bold">PBLift</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-gray-200">Home</a>
+                <a href="#" class="hover:text-gray-200">Features</a>
+                <a href="#" class="hover:text-gray-200">My Projects</a>
+                <a href="#" class="hover:text-gray-200">Community</a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Turn Learning Into
+                    <span class="typewriter">A Personal Internship</span></h1>
+                <p class="text-xl mb-6">With PBLift, you don't just learn - you design, act and reprogram yourself like
+                    in real work experience.</p>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <button class="bg-white text-primary font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition duration-300">
+                        Start Your Project
+                    </button>
+                    <button class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-primary transition duration-300">
+                        How It Works
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-purple-300 rounded-full opacity-50"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-300 rounded-full opacity-50"></div>
+                    <div class="relative bg-white rounded-xl shadow-xl p-6 text-dark">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="font-bold">AI Mentor</h3>
+                                <p class="text-xs text-gray-500">Just now</p>
+                            </div>
+                        </div>
+                        <p class="mb-4">Let's create your personalized internship project! What would you like to learn
+                            today?</p>
+                        <div class="bg-gray-100 rounded-lg p-3">
+                            <p class="text-sm italic">"I want to learn UX design but don't know what to create.
+                                Everything seems already done."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">How PBLift Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 project-card">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Project Generator</h3>
+                    <p class="text-gray-600">AI creates a personalized project for you, just like a real internship
+                        assignment with clear goals, stages, and deliverables.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 project-card">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Task Breakdown</h3>
+                    <p class="text-gray-600">Each project is broken down into manageable tasks with deadlines, just like
+                        in a professional work environment.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 project-card">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Mental Debugger</h3>
+                    <p class="text-gray-600">When you're stuck, AI helps identify mental blocks and provides exercises
+                        to overcome them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Example Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">Your Personalized Internship Project</h2>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+                <!-- Project Header -->
+                <div class="gradient-bg text-white p-6">
+                    <h3 class="text-2xl font-bold">UX Design Internship Project</h3>
+                    <p class="opacity-90">Created just for you based on your learning goals</p>
+                </div>
+
+                <!-- Project Details -->
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg mb-2">Project Brief</h4>
+                        <p>You're an intern in a product team. Your assignment is to design a mobile UX for an online
+                            magazine with audio commenting functionality.</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg mb-4">Project Stages</h4>
+                        <div class="space-y-4">
+                            <!-- Stage 1 -->
+                            <div class="task-item pl-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mt-1 mr-3">
+                                        1</div>
+                                    <div>
+                                        <h5 class="font-bold">Research Phase</h5>
+                                        <p class="text-sm text-gray-600">Investigate 3 existing solutions and analyze
+                                            their UX patterns.</p>
+                                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                                            <i class="far fa-calendar mr-1"></i>
+                                            <span>Due: Tomorrow</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Stage 2 -->
+                            <div class="task-item pl-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mt-1 mr-3">
+                                        2</div>
+                                    <div>
+                                        <h5 class="font-bold">Design MVP</h5>
+                                        <p class="text-sm text-gray-600">Create 2 key screens showing the core user
+                                            flow.</p>
+                                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                                            <i class="far fa-calendar mr-1"></i>
+                                            <span>Due: In 3 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Stage 3 -->
+                            <div class="task-item pl-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-xs mt-1 mr-3">
+                                        3</div>
+                                    <div>
+                                        <h5 class="font-bold">User Testing</h5>
+                                        <p class="text-sm text-gray-600">Conduct a test with 1 person and document your
+                                            findings.</p>
+                                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                                            <i class="far fa-calendar mr-1"></i>
+                                            <span>Due: In 5 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+                            Start Project
+                        </button>
+                        <button class="text-primary hover:underline">
+                            Generate Another Project
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Debugger Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">Mental Debugger</h2>
+            <div class="max-w-3xl mx-auto debugger-box rounded-xl p-6 shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-500">
+                        <i class="fas fa-exclamation"></i>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="font-bold">I'm stuck!</h3>
+                        <p class="text-sm text-gray-500">Describe what you're feeling</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <textarea class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" rows="4" placeholder="I feel like I'm doing nonsense. Why am I even doing this project?"></textarea>
+                </div>
+
+                <button class="gradient-bg text-white px-6 py-3 rounded-lg hover:opacity-90 transition mb-6">
+                    Analyze My Thinking
+                </button>
+
+                <!-- Debugger Result -->
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <div class="flex items-start">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary mr-3">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Cognitive Pattern Detected</h4>
+                            <p class="mb-3">This is the "If I didn't invent Google, it's meaningless" thinking pattern.
+                            </p>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-3">
+                                <p class="text-sm">⛓ This is "total result" thinking - evaluating work only by its
+                                    potential for massive impact.</p>
+                            </div>
+                            <h5 class="font-bold mb-2 mt-4">Suggested Reframe:</h5>
+                            <p class="mb-3">Let's evaluate your progress on three scales: growth → skill → completion.
+                            </p>
+                            <div class="bg-green-50 border-l-4 border-green-400 p-3">
+                                <p class="text-sm">✍ Exercise: Rewrite why you're doing this project in the form of "In
+                                    order to..." (focus on value).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">What Learners Say</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-200 flex items-center justify-center text-primary">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sarah K.</h4>
+                            <p class="text-sm text-gray-500">UX Design Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"PBLift transformed how I learn. Instead of just watching tutorials, I now
+                        have real projects in my portfolio that helped me land my first internship."</p>
+                    <div class="mt-3 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center text-primary">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Mark T.</h4>
+                            <p class="text-sm text-gray-500">Aspiring Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The mental debugger is a game-changer. When I felt stuck, it helped me
+                        understand it was perfectionism holding me back, not my abilities."</p>
+                    <div class="mt-3 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Learning?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Start building real projects with AI mentorship today.</p>
+            <button class="bg-white text-primary font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
+                Create Your First Project - It's Free
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-brain text-2xl text-primary"></i>
+                        <span class="text-xl font-bold">PBLift</span>
+                    </div>
+                    <p class="text-gray-400">Turning learning into personal internships with AI mentorship.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Product</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Examples</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="linkedin.com/in/анастасия-заболотная-9ba496348
+"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-linkedin-in"></i>
+
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">zabolotnay.dev@gmail.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 PBLift. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typewriter effect
+            const typewriter = document.querySelector('.typewriter');
+            if (typewriter) {
+                setTimeout(() => {
+                    typewriter.style.animation = 'none';
+                    typewriter.style.borderRight = 'none';
+                    typewriter.style.whiteSpace = 'normal';
+                }, 3500);
+            }
+            
+            // Debugger button interaction
+            const debuggerBtn = document.querySelector('.debugger-box button');
+            if (debuggerBtn) {
+                debuggerBtn.addEventListener('click', function() {
+                    const resultBox = document.querySelector('.debugger-box .bg-white');
+                    if (resultBox) {
+                        resultBox.style.display = resultBox.style.display === 'none' ? 'block' : 'block';
+                    }
+                });
+            }
+        });
+    </script>
+
+
+</html>
