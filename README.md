@@ -14,7 +14,7 @@ Well, the setup is easy if you have been working without docker (I hope I'll mak
 
 **Backend:**
 
-1. First of all install Python 3.10 - [Python Release Python 3.10.7 | Python.org](https://www.python.org/downloads/release/python-3107/) (I've been using 3.10.7)
+1. First of all install Python 3.10 - https://www.python.org/downloads/release/python-3107/ (I've been using 3.10.7)
 
 2. Go to backend 
 
@@ -31,11 +31,15 @@ Well, the setup is easy if you have been working without docker (I hope I'll mak
 
 **Frontend**
 
-1. Install Node JS - <here goes link>
+1. Install Node JS - https://nodejs.org/en/download - We used 22.16 (LTS)
 
 2. Install dependencies `npm i` or `npm install`
 
-3. Run `npm run build`
+3. Edit `.env.local` if you need to change API URL
+
+4. Run `npm run build` to compile a production build
+
+5. Run `npm start` to start
 
 # How does it work?
 

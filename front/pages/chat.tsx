@@ -17,28 +17,31 @@ const STORAGE_KEY = 'chat_messages';
 export default function Chat() {
   const isAuthenticated = useRequireAuth();
   const router = useRouter();
-  const [messages, setMessages] = useState<Message[]>(() => {
+  const [messages, setMessages] = useState<Message[]>([{
+    id: '1',
+    text: 'Привет! Я ваш AI-ментор. Я помогу вам с проектами, задачами и обучением. Что бы вы хотели обсудить?',
+    sender: 'ai',
+    timestamp: new Date(),
+  }]);
+  
+  useEffect(() => {
+    // Загружаем сообщения из localStorage только на клиенте
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          return parsed.map((msg: any) => ({
+          setMessages(parsed.map((msg: any) => ({
             ...msg,
             timestamp: new Date(msg.timestamp)
-          }));
+          })));
         } catch (e) {
           console.error('Failed to parse saved messages:', e);
         }
       }
     }
-    return [{
-      id: '1',
-      text: 'Привет! Я ваш AI-ментор. Я помогу вам с проектами, задачами и обучением. Что бы вы хотели обсудить?',
-      sender: 'ai',
-      timestamp: new Date(),
-    }];
-  });
+  }, []);
+
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -47,7 +50,8 @@ export default function Chat() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (messages.length > 1) {
+    // Сохраняем сообщения в localStorage только на клиенте
+    if (typeof window !== 'undefined' && messages.length > 1) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     }
   }, [messages]);

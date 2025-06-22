@@ -18,17 +18,24 @@ export interface ApiError {
 
 // Функция для сохранения токена
 export const setToken = (token: string) => {
-  localStorage.setItem('jwt_token', token);
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('jwt_token', token);
+  }
 };
 
 // Функция для получения токена
 export const getToken = (): string | null => {
-  return localStorage.getItem('jwt_token');
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('jwt_token');
+  }
+  return null;
 };
 
 // Функция для удаления токена (при выходе)
 export const removeToken = () => {
-  localStorage.removeItem('jwt_token');
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('jwt_token');
+  }
 };
 
 // Базовая функция для API запросов
