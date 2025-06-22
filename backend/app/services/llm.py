@@ -3,6 +3,9 @@ from transformers import AutoTokenizer, AutoModelForCausalLM  # Core LLM compone
 import torch  # PyTorch ML framework
 from pathlib import Path  # Path manipulation
 import os  # OS utilities
+from app.core.config import settings  # Import settings for system prompt
+from concurrent.futures import ThreadPoolExecutor  # For parallel processing
+import asyncio  # For async operations
 
 class LLMService:
     def __init__(self):
@@ -33,71 +36,106 @@ class LLMService:
             self.tokenizer.pad_token = self.tokenizer.eos_token
             self.model.config.pad_token_id = self.model.config.eos_token_id
 
+        # Initialize thread pool for parallel processing
+        self.executor = ThreadPoolExecutor(max_workers=2)  # Adjust based on CPU cores
+
         print(f"Model loaded successfully on {self.device}")
         print(f"Model dtype: {self.model.dtype}")
 
-    async def generate_response(
+    def _generate_response_sync(
         self,
-        prompt: str,  # Input text
-        max_length: int = 512,  # Max output length
-        temperature: float = 0.7,  # Randomness control
-        top_p: float = 0.95,  # Nucleus sampling threshold
-        top_k: int = 50,  # Top-k sampling threshold
+        formatted_prompt: str,
+        max_length: int,
+        temperature: float,
+        top_p: float,
+        top_k: int
     ) -> str:
         """
-        Generate a response from the model given a prompt
+        Synchronous generation function to run in thread pool
         """
         try:
-            # Format prompt for Gemma chat format
-            formatted_prompt = f"<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model"
-            
             # Tokenize input
             inputs = self.tokenizer(
                 formatted_prompt,
-                return_tensors="pt",  # PyTorch format
-                padding=True,  # Enable padding
-                truncation=True,  # Enable truncation
-                max_length=max_length,  # Max sequence length
-                add_special_tokens=True  # Add model-specific tokens
+                return_tensors="pt",
+                padding=True,
+                truncation=True,
+                max_length=max_length,
+                add_special_tokens=True
             ).to(self.device)
 
             # Generate with safety limits
-            with torch.no_grad():  # Disable gradient computation
+            with torch.no_grad():
                 outputs = self.model.generate(
                     **inputs,
-                    max_new_tokens=min(max_length, 256),  # Cap output length
-                    do_sample=True,  # Enable sampling
-                    temperature=max(0.1, min(temperature, 1.0)),  # Bound temperature
-                    top_p=max(0.1, min(top_p, 1.0)),  # Bound top_p
-                    top_k=max(1, min(top_k, 100)),  # Bound top_k
-                    pad_token_id=self.tokenizer.pad_token_id,  # Padding token
-                    eos_token_id=self.tokenizer.eos_token_id,  # End token
-                    repetition_penalty=1.1,  # Penalize repetitions
-                    length_penalty=1.0,  # Length control
-                    no_repeat_ngram_size=2  # Prevent 2-gram repeats
+                    max_new_tokens=min(max_length, 512),
+                    do_sample=True,
+                    temperature=temperature,
+                    top_p=top_p,
+                    top_k=top_k,
+                    pad_token_id=self.tokenizer.pad_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
+                    repetition_penalty=1.2,
+                    length_penalty=1.0,
+                    no_repeat_ngram_size=3
                 )
 
             # Decode output tokens to text
             response = self.tokenizer.decode(
-                outputs[0],  # Take first sequence
-                skip_special_tokens=True,  # Remove special tokens
-                clean_up_tokenization_spaces=True  # Clean whitespace
+                outputs[0],
+                skip_special_tokens=True,
+                clean_up_tokenization_spaces=True
             )
             
             # Clean up response
-            response = response.replace(formatted_prompt, "").strip()
-            if "<end_of_turn>" in response:
-                response = response.split("<end_of_turn>")[0].strip()
+            turns = response.split("<start_of_turn>")
+            for turn in turns:
+                if turn.startswith("model"):
+                    response = turn.replace("model", "").strip()
+                    break
             
+            response = response.split("<end_of_turn>")[0].strip()
             return response
 
         except Exception as e:
-            # Log error details
             print(f"Error during generation: {str(e)}")
             print(f"Current device: {self.device}")
             print(f"Model dtype: {self.model.dtype}")
-            print(f"Input shape: {inputs.input_ids.shape}")
             raise
+
+    async def generate_response(
+        self,
+        prompt: str,
+        max_length: int = 1024,
+        temperature: float = 0.7,
+        top_p: float = 0.95,
+        top_k: int = 50,
+    ) -> str:
+        """
+        Asynchronous generate response method
+        """
+        formatted_prompt = f"<start_of_turn>system\n{settings.SYSTEM_PROMPT}<end_of_turn>\n<start_of_turn>user\n{prompt}<end_of_turn>\n<start_of_turn>model\nLet me help you with that."
+        
+        # Run generation in thread pool to avoid blocking
+        loop = asyncio.get_event_loop()
+        response = await loop.run_in_executor(
+            self.executor,
+            self._generate_response_sync,
+            formatted_prompt,
+            max_length,
+            temperature,
+            top_p,
+            top_k
+        )
+        
+        return response
+
+    def __del__(self):
+        """
+        Cleanup resources on deletion
+        """
+        if hasattr(self, 'executor'):
+            self.executor.shutdown(wait=True)
 
 # Global model instance
 llm_service: Optional[LLMService] = None
@@ -107,6 +145,6 @@ def get_llm_service() -> LLMService:
     Get or create LLM service instance (singleton pattern)
     """
     global llm_service
-    if llm_service is None:  # Create if not exists
+    if llm_service is None:
         llm_service = LLMService()
     return llm_service 

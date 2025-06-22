@@ -1,6 +1,8 @@
 // Top secret files
 backend/.env
 backend/venv
+*.db
+
 
 // No cache (junk) in our repository!!
 backend/app/api/v1/__pycache__
@@ -12,7 +14,11 @@ backend/app/models/__pycache__
 backend/app/__pycache__
 backend/app/services/__pycache__
 backend/__pycache__
-*.db
+
+front/node_modules
+front/.next
+package-lock.json
+
 
 // Get your own gemma
 backend/models/gemma-3-4b-it

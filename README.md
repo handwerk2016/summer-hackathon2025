@@ -8,8 +8,6 @@ The theme is: **Lack of Practical Project-Based Learning**
 
 Backend: Python 3.10, FastAPI, torch, transformers (for LLM)<br>Database: MySQL<br>Frontend: to be filled<br>LLM: [gemma-3-4b-it](https://huggingface.co/google/gemma-3-4b-it)
 
-
-
 # Setup
 
 Well, the setup is easy if you have been working without docker (I hope I'll make a docker container).
@@ -223,13 +221,11 @@ To be continued!
 
 # Our team:
 
-| Photo                                                                                                                                             | Name      | Role                                                                             | Github                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------------- | ------------------------------------------------ |
+|                                                                                                                                                   | Name      | Role                                                                             | Github                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- |:---------:|:--------------------------------------------------------------------------------:|:------------------------------------------------:|
 | <img title="" src="https://avatars.githubusercontent.com/u/197951069" alt="" width="91">                                                          | Anastasia | Team Lead<br/>Frontend Developer                                                 | [Click](https://github.com/Anastasia11111111114) |
 | <img src="https://i.imgur.com/nm2Gugw.png" title="" alt="ds" width="91">                                                                          | Alex      | Backend Developer<br/>Tech Lead<br/>(Technically Full-Stack but prefers backend) | [Click](https://github.com/handwerk2016)         |
 | <img src="https://avatars.githubusercontent.com/u/52779739?v=4" title="" alt="https://avatars.githubusercontent.com/u/52779739?v=4" width="98">   | Ilya      | Frontend Developer                                                               | [Click](https://github.com/STIDchannel)          |
 | <img src="https://avatars.githubusercontent.com/u/209294428?v=4" title="" alt="https://avatars.githubusercontent.com/u/209294428?v=4" width="95"> | Andrei    | Web Designer                                                                     | [Click](https://github.com/ProstoAndriuha)       |
-
-
 
 Music playlist used during codding: https://soundcloud.com/kazaxskij-diplomat/likes
